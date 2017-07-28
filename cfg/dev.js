@@ -42,16 +42,11 @@ let config = Object.assign({}, baseConfig, {
 
 // Add needed loaders to the defaults here
 // 开发环境需要的 loaders
-// config.module.rules.push({
-//   test: /\.(js|jsx)$/,
-//   // exclude: /node_modules/,
-//   include: defaultSettings.srcPath,
-//   use: {
-//       loader: 'babel-loader',
-//       options: {
-//         presets: ['es2015', 'react']
-//       }
-//     }
+config.module.rules.push({
+  test: /\.(js|jsx)$/,
+  exclude: /node_modules/,
+  // include: defaultSettings.srcPath,
+  loader: 'babel-loader'
   
 //   // use: [{
 //   //   loader: 'babel-loader',
@@ -66,6 +61,6 @@ let config = Object.assign({}, baseConfig, {
 //   //   config.additionalPaths,
 //   //   [ path.join(__dirname, '/../src') ]
 //   // )
-// });
+});
 
 module.exports = config;

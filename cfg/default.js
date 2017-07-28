@@ -18,24 +18,12 @@ let getDefaultModules = () => {
   return {
     rules: [
       {
-        // test: /\.(js|jsx)$/,
-        // // 加载器的执行顺序，不设置为正常执行。可选值 'pre|post' 前|后
-        // enforce: 'pre',
-        // include: srcPath,
-        // // exclude: /node_modules/,
-        // loader: 'eslint-loader'
-        test: /\.js$/,
-        exclude: /node_modules/,
-        // include: srcPath,
-        // use: 'babel-loader'
-        use: {
-          loader: 'babel-loader',
-          options: {
-            babelrc: false,
-            presets: ['es2015'],
-            plugins: ['transform-runtime']
-          }
-        }
+        test: /\.(js|jsx)$/,
+        // 加载器的执行顺序，不设置为正常执行。可选值 'pre|post' 前|后
+        enforce: 'pre',
+        include: srcPath,
+        // exclude: /node_modules/,
+        loader: 'eslint-loader'
       },
       {
         test: /\.css$/,
