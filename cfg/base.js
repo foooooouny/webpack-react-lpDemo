@@ -16,15 +16,15 @@ module.exports = {
   // additionalPaths: additionalPaths,
   // port: defaultSettings.port,
   // debug: true,
-  devtool: 'eval',
+  devtool: 'eval-source-map',
+  // output: {
+  //   path: path.join(__dirname, '/../build/public'),
+  //   filename: 'app.js',
+  //   publicPath: defaultSettings.publicPath
+  //   // sourceMapFilename: '[name].map'
+  // },
   // __dirname 代表当前路径
   // context: path.join(__dirname, '/../src'),
-  output: {
-    path: path.join(__dirname, '/../build/public'),
-    filename: 'app.js',
-    publicPath: defaultSettings.publicPath
-    // sourceMapFilename: '[name].map'
-  },
   devServer: {
     contentBase: path.join(__dirname, '/../app'),
     historyApiFallback: true,
@@ -35,7 +35,7 @@ module.exports = {
     noInfo: false,
     proxy: {
       '/api': {
-        target: 'http://m.maoyan.com',
+        target: 'http://jiekouUrl.com',
         secure: false,
         changeOrigin: true,
         pathRewrite: {'^/api' : ''}
@@ -48,11 +48,12 @@ module.exports = {
     // resolve.alias 路径的别名，方便引入文件的时候简写.
     alias: {
       // react: pathToReact,
-      actions: `${defaultSettings.srcPath}/actions/`,
-      components: `${defaultSettings.srcPath}/components/`,
+      Actions: `${defaultSettings.srcPath}/actions/`,
+      Components: `${defaultSettings.srcPath}/components/`,
       // sources: `${defaultSettings.srcPath}/sources/`,
-      stores: `${defaultSettings.srcPath}/stores/`,
-      styles: `${defaultSettings.srcPath}/styles/`,
+      Stores: `${defaultSettings.srcPath}/stores/`,
+      Styles: `${defaultSettings.srcPath}/styles/`,
+      // Build: '/../build/'
       // config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV
       // moment: 'moment/min/moment-with-locales.min.js'
     },

@@ -30,6 +30,4 @@ function buildConfig (myEnv) {
     return config;
 }
 
-console.log(buildConfig(env).module.rules)
-
 module.exports = buildConfig(env);

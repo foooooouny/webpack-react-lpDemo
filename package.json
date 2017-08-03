@@ -6,8 +6,12 @@
   "scripts": {
     "start": "node server.js --env=dev --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dist": "npm run copy & webpack --env=dist",
-    "copy": "copyfiles -f ./app/index.html ./app/favicon.ico ./dist"
+    "dev": "webpack --env=dev",
+    "dist": "webpack --env=dist",
+    "delJs": "rm -rf build/public/js",
+    "copy": "copyfiles -f ./app/index.html ./app/favicon.ico ./dist",
+    "buildDll": "npm run deleteDll & webpack --config webpack.dll.config.js  --env=dist",
+    "deleteDll": "rm -rf manifest.json & rm -rf build/dist/dll"
   },
   "repository": {
     "type": "git",
@@ -20,7 +24,7 @@
   },
   "homepage": "https://github.com/foooooouny/webpack-react-lpDemo#readme",
   "devDependencies": {
-    "autoprefixer-loader": "^3.2.0",
+    "antd": "^2.12.3",
     "axios": "^0.16.2",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
@@ -29,9 +33,7 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
-    "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
@@ -45,6 +47,8 @@
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
+    "html-webpack-include-assets-plugin": "0.0.7",
+    "html-webpack-plugin": "^2.29.0",
     "json-loader": "^0.5.7",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
@@ -62,6 +66,7 @@
   },
   "dependencies": {
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.2"
   }
 }

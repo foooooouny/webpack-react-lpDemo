@@ -2,7 +2,7 @@
 
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
-const srcPath = path.join(__dirname, '/../');
+const srcPath = path.join(__dirname, '/../app');
 const defaultPort = 8000;
 
 /**
@@ -27,16 +27,20 @@ let getDefaultModules = () => {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader'})
+        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [{ loader: 'css-loader' }]})
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'less-loader']}),
+        use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [{ loader: 'css-loader'}, { loader: 'less-loader' }]}),
         include: srcPath
       },
       {
         test: /\.styl/,
-        loaders: ['style-loader', 'css-loader', 'stylus-loader']
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'stylus-loader' }
+        ]
       },
       // {
       //   test: /\.(eot|ttf|woff|woff2)$/,

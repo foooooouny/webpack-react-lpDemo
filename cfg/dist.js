@@ -2,6 +2,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackAssetPlugin = require('html-webpack-include-assets-plugin');
 
 const baseConfig = require('./base');
 const defaultSettings = require('./default');
@@ -13,13 +15,45 @@ const defaultSettings = require('./default');
 
 let config = Object.assign({}, baseConfig, {
   entry: path.join(__dirname, '../app/index.js'),
+  output: {
+    path: path.join(__dirname, '/../build/dist'),
+    filename: 'js/[name].[chunkhash].js'
+    // publicPath: defaultSettings.publicPath
+    // sourceMapFilename: '[name].map'
+  },
   cache: false,
   // devtool: 'sourcemap',
   devtool: 'hidden-source-map',
   plugins: [
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('../manifest.json')
+    }),
+    new HtmlWebpackPlugin({
+      title: '移动保全',
+      filename: 'index.html',
+      template: path.join(__dirname, '/../app/index.templete.html'),
+      inject: true,
+      hash: true
+      // minify: {    //压缩HTML文件
+      //   removeComments: true,    //移除HTML中的注释
+      //   collapseWhitespace: true    //删除空白符与换行符
+      // }
+    }),
+    new HtmlWebpackAssetPlugin({
+      assets: ['dll/vendorDlls.dll.js'],
+      files: ['index.html'],
+      append: false,
+      hash: true
+    }),
+    // 如果文件内容没有改变，则不重复打包
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'commons',
-      filename: 'commons.js',
+      filename: 'js/commons.[chunkhash].js',
       minChunks: 2
     }),
     // new webpack.optimize.DedupePlugin(),
@@ -30,12 +64,23 @@ let config = Object.assign({}, baseConfig, {
     //   searchResolveModulesDirectories: false
     // }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        drop_console: true
+      },
+      comments: false,
+      beautify: false,
+      sourceMap: false
+    }),
     // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
-    // new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new defaultSettings.ExtractTextPlugin('styles.css')
+    new webpack.NoEmitOnErrorsPlugin(),
+    // new webpack.NoErrorsPlugin(),
+    new defaultSettings.ExtractTextPlugin({
+      filename: 'css/style.css',
+			allChunks: true
+    })
   ],
   module: defaultSettings.getDefaultModules()
 });
