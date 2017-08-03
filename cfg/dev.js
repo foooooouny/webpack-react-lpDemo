@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseConfig = require('./base');
 const defaultSettings = require('./default');
 
@@ -15,10 +16,37 @@ let config = Object.assign({}, baseConfig, {
     'webpack/hot/only-dev-server/',
     './app/index.js'
   ],
+  output: {
+    path: path.join(__dirname, '/../build/public'),
+    filename: 'js/app.js',
+    publicPath: defaultSettings.publicPath
+    // sourceMapFilename: '[name].map'
+  },
   cache: true,
   // devtool: 'eval-source-map',
   devtool: 'cheap-module-eval-source-map',
   plugins: [
+    // new HtmlWebpackPlugin({
+    //   title: '移动保全',
+    //   filename: 'index.html',
+    //   template: path.join(__dirname, '/../app/index.templete.html'),
+    //   inject: true,
+    //   hash: true
+    //   // minify: {    //压缩HTML文件
+    //   //   removeComments: true,    //移除HTML中的注释
+    //   //   collapseWhitespace: true    //删除空白符与换行符
+    //   // }
+    // }),
+    // 如果文件内容没有改变，则不重复打包
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'manifest',
+    //   minChunks: Infinity
+    // }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'commons',
+    //   filename: 'js/commons.js',
+    //   minChunks: 2
+    // }),
     // debug 配置项需要使用插件的形式引入
     new webpack.LoaderOptionsPlugin({
       debug: true
@@ -35,7 +63,7 @@ let config = Object.assign({}, baseConfig, {
     // new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     // new webpack.NoErrorsPlugin(),
-    new defaultSettings.ExtractTextPlugin('styles.css')
+    new defaultSettings.ExtractTextPlugin('css/style.css')
   ],
   module: defaultSettings.getDefaultModules()
 })
@@ -46,7 +74,8 @@ config.module.rules.push({
   test: /\.(js|jsx)$/,
   exclude: /node_modules/,
   // include: defaultSettings.srcPath,
-  loader: 'babel-loader'
+  // loader: 'babel-loader',
+  loaders: ['babel-loader']
   
 //   // use: [{
 //   //   loader: 'babel-loader',

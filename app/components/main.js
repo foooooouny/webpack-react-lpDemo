@@ -1,3 +1,5 @@
+// require('Styles/app.css')
+import 'Styles/app.css'
 import React, { Component } from 'react';
 
 class AppMain extends Component {
