@@ -9,13 +9,18 @@ class Detail extends Component {
   }
 
   componentDidMount() {
-    
+
+  }
+  
+  backHome() {
+    this.props.history.push('/')
   }
 
   render() {
     return (
       <div>
         Detail
+        <div className="detail-back-home" onClick={ this.backHome.bind(this) }>点击我返回首页</div>
       </div>
     )
   }
