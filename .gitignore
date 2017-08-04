@@ -1,4 +1,7 @@
 node_modules/
-dist/
+build/
+dllConfig/
+stats.json
+package-lock.json
 .DS_Store
 .idea/

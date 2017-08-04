@@ -27,7 +27,19 @@ let config = Object.assign({}, baseConfig, {
   plugins: [
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('../manifest.json')
+      manifest: require('../dllConfig/antd-manifest.json')
+    }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('../dllConfig/react_dom-manifest.json')
+    }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('../dllConfig/react_and_router-manifest.json')
+    }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('../dllConfig/other-manifest.json')
     }),
     new HtmlWebpackPlugin({
       title: '移动保全',
@@ -41,7 +53,7 @@ let config = Object.assign({}, baseConfig, {
       // }
     }),
     new HtmlWebpackAssetPlugin({
-      assets: ['dll/vendorDlls.dll.js'],
+      assets: ['dll/antd.dll.js', 'dll/react_dom.dll.js', 'dll/react_and_router.dll.js', 'dll/other.dll.js'],
       files: ['index.html'],
       append: false,
       hash: true
@@ -78,7 +90,7 @@ let config = Object.assign({}, baseConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // new webpack.NoErrorsPlugin(),
     new defaultSettings.ExtractTextPlugin({
-      filename: 'css/style.css',
+      filename: 'css/style.[chunkhash].css',
 			allChunks: true
     })
   ],
