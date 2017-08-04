@@ -2,7 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseConfig = require('./base');
 const defaultSettings = require('./default');
 
@@ -62,6 +62,7 @@ let config = Object.assign({}, baseConfig, {
     // }),
     // new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     // new webpack.NoErrorsPlugin(),
     new defaultSettings.ExtractTextPlugin('css/style.css')
   ],
@@ -75,7 +76,7 @@ config.module.rules.push({
   exclude: /node_modules/,
   // include: defaultSettings.srcPath,
   // loader: 'babel-loader',
-  loaders: ['babel-loader']
+  loaders: ['react-hot-loader/webpack', 'babel-loader']
   
 //   // use: [{
 //   //   loader: 'babel-loader',

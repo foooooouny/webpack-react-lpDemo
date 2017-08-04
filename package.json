@@ -7,10 +7,11 @@
     "start": "node server.js --env=dev --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --env=dev",
-    "dist": "webpack --env=dist",
-    "delJs": "rm -rf build/public/js",
+    "dist": "npm run delJs & npm run delCss & webpack --env=dist",
+    "delJs": "rm -rf build/dist/js",
+    "delCss": "rm -rf build/dist/css",
     "copy": "copyfiles -f ./app/index.html ./app/favicon.ico ./dist",
-    "buildDll": "npm run deleteDll & webpack --config webpack.dll.config.js  --env=dist",
+    "buildDll": "npm run deleteDll & webpack --config webpack.dll.config.js --env=dist",
     "deleteDll": "rm -rf manifest.json & rm -rf build/dist/dll"
   },
   "repository": {
@@ -55,7 +56,7 @@
     "minimist": "^1.2.0",
     "open": "0.0.5",
     "querystring": "^0.2.0",
-    "react-hot-loader": "^1.3.1",
+    "react-hot-loader": "^3.0.0-alpha.9",
     "react-router": "^4.1.2",
     "react-router-dom": "^4.1.2",
     "style-loader": "^0.18.2",
