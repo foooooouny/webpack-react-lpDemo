@@ -14,10 +14,10 @@ const args = require('minimist')(process.argv.slice(2));
 module.exports = {
   entry: {
     // vendorDlls
-    react_A_router: ['react', 'react-router'],
+    react_A_router: ['react', 'react-router', 'react-router-dom'],
     react_dom: ['react-dom'],
-    antd: ['antd/lib/date-picker', 'antd/lib/radio', 'antd/lib/icon'],
-    other: ['babel-polyfill', 'querystring']
+    antd: ['antd/lib/date-picker', 'antd/lib/radio', 'antd/lib/icon', 'antd/lib/spin', 'antd/lib/auto-complete', 'antd/lib/steps', 'antd/lib/collapse', 'antd/lib/modal', 'antd/lib/checkbox', 'antd/lib/progress', 'antd/lib/message'],
+    other: ['babel-polyfill', 'querystring', 'crypto-js']
   },
   output: {
     path: path.join(__dirname, `/build/${args.env}`),

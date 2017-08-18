@@ -49,12 +49,13 @@ module.exports = {
     alias: {
       // react: pathToReact,
       Actions: `${defaultSettings.srcPath}/actions/`,
+      Api: `${defaultSettings.srcPath}/api/`,
       Components: `${defaultSettings.srcPath}/components/`,
-      // sources: `${defaultSettings.srcPath}/sources/`,
       Stores: `${defaultSettings.srcPath}/stores/`,
       Styles: `${defaultSettings.srcPath}/styles/`,
-      // Build: '/../build/'
-      // config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV
+      Util: `${defaultSettings.srcPath}/utils/`,
+      // 设置 appEnv 为当前环境
+      Config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV
       // moment: 'moment/min/moment-with-locales.min.js'
     },
     modules: [

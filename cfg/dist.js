@@ -35,7 +35,7 @@ let config = Object.assign({}, baseConfig, {
     }),
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('../dllConfig/react_and_router-manifest.json')
+      manifest: require('../dllConfig/react_A_router-manifest.json')
     }),
     new webpack.DllReferencePlugin({
       context: __dirname,
@@ -53,7 +53,7 @@ let config = Object.assign({}, baseConfig, {
       // }
     }),
     new HtmlWebpackAssetPlugin({
-      assets: ['dll/antd.dll.js', 'dll/react_dom.dll.js', 'dll/react_and_router.dll.js', 'dll/other.dll.js'],
+      assets: ['dll/antd.dll.js', 'dll/react_dom.dll.js', 'dll/react_A_router.dll.js', 'dll/other.dll.js'],
       files: ['index.html'],
       append: false,
       hash: true
@@ -90,7 +90,7 @@ let config = Object.assign({}, baseConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // new webpack.NoErrorsPlugin(),
     new defaultSettings.ExtractTextPlugin({
-      filename: 'css/style.[chunkhash].css',
+      filename: 'css/style.css',
 			allChunks: true
     })
   ],

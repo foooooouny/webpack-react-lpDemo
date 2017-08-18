@@ -2,6 +2,7 @@
 import 'Styles/app.less'
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   HashRouter,
   Route,
@@ -9,19 +10,28 @@ import {
 } from 'react-router-dom';
 import HomePage from './home';
 import Detail from './detail';
+import { getUserD, setUserD, destoryUserD, destoryAllD } from 'Components/util/contextData'
 
 const ROUTES=[
   {
-    path:'/homePage',
+    path: '/homePage',
     component: HomePage
   },
   {
-    path:'/detail',
+    path: '/detail/:id',
     component: Detail
   }
 ]
 
 class AppMain extends Component {
+  getChildContext() {
+    return {
+      getUserD,
+      setUserD,
+      destoryUserD,
+      destoryAllD
+    };
+  }
 
   render() {
     return(
@@ -39,6 +49,14 @@ class AppMain extends Component {
       </HashRouter>
     )
   }
+}
+
+// 注册context事件
+AppMain.childContextTypes = {
+  getUserD: PropTypes.func,
+  setUserD: PropTypes.func,
+  destoryUserD: PropTypes.func,
+  destoryAllD: PropTypes.func
 }
 
 export default AppMain;

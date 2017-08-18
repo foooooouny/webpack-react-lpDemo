@@ -9,7 +9,7 @@ class Detail extends Component {
   }
 
   componentDidMount() {
-
+    console.log(this.props.match.params.id)
   }
   
   backHome() {
