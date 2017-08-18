@@ -13,8 +13,8 @@ webpack-react 底层环境框架
 **1. clone the project**
 
 ```sh
-git clone http://192.168.0.253/DEV/web.git jylp-app
-cd jylp-app
+git clone https://github.com/foooooouny/webpack-react-lpDemo.git jyxm-app
+cd jyxm-app
 ```
 
 **2. Install the dependencies**
@@ -28,7 +28,7 @@ npm install
 **4. start a deveplpment server**
 
 ```sh
-npm start               // 启动本地服务，端口：8080
+npm start               // 启动本地服务，端口：8000
 ```
 
 **5. Generate a production build in `./public`:**
@@ -36,7 +36,9 @@ npm start               // 启动本地服务，端口：8080
 ```sh
 npm run build:dll             // 打包 dll 文件，只需要在初次打包时执行一次，成功之后才可以执行 npm run build
 
-npm run copy:utils            // 复制 /app/utils 文件到 /public/utils,成功之后，找到 /public/utils/env/index.js，将 pathValue 改为当前环境值
+npm run copy:utils            // 复制 /app/utils 文件到 /build/dist/utils,成功之后，找到 /public/utils/env/index.js，将 pathValue 改为当前环境值
  
-npm run build                 // 打包项目文件，第一次打包的时候，必须要先执行 npm run build:dll
+npm run dist                 // 打包项目文件，第一次打包的时候，必须要先执行 npm run build:dll
 ```
+
+
