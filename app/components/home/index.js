@@ -1,11 +1,11 @@
 // 主页面，列表页
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 // import lpAes from 'Util/aesT';
 // import { AESEnc, AESDec, getKey } from 'Util/aes';
-import { postData, postUrcodeData, lpPostSecretUrcodeD, parseDecryptD } from 'Api';
-import PropTypes from 'prop-types';
-import { DatePicker } from 'antd';
-import moment from 'moment';
+import { postData, postUrcodeData, lpPostSecretUrcodeD, parseDecryptD } from 'Api'
+import { DatePicker } from 'antd'
+import moment from 'moment'
 
 class HomePage extends Component {
   constructor(props) {
@@ -44,39 +44,6 @@ class HomePage extends Component {
 
   }
 
-  initHashData() {
-    // 解析地址栏hash数据，得到对象
-    let oGetVars = new (function (sSearch) {
-      let rNull = /^\s*$/,
-          rBool = /^(true|false)$/i;
-      let buildValue = (sValue) => {
-        if (rNull.test(sValue)) {
-          return null;
-        }
-        if (rBool.test(sValue)) {
-          return sValue.toLowerCase() === 'true';
-        }
-        if (isFinite(sValue)) {
-          return sValue;
-        }
-        if (isFinite(Date.parse(sValue))) {
-          return new Date(sValue);
-        }
-
-        return sValue;
-      }
-      if (sSearch.length > 1) {
-        for (let aItKey, nKeyId = 0, aCouples = sSearch.substr(1).split('&'); nKeyId < aCouples.length; nKeyId++) {
-          aItKey = aCouples[nKeyId].split('=');
-          this[decodeURI(aItKey[0])] = aItKey.length > 1 ? buildValue(decodeURI(aItKey[1])) : null;
-        }
-      }
-    })(window.location.search);
-
-    // 解析浏览器地址获得数据对象
-    console.log(oGetVars);
-  }
-
   // 加密接口请求demo
   
 
@@ -94,11 +61,6 @@ class HomePage extends Component {
       </div>
     )
   }
-}
-
-HomePage.contextType = {
-  getUser: PropTypes.func,
-  setUser: PropTypes.func
 }
 
 export default HomePage;
