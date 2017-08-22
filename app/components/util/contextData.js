@@ -7,7 +7,7 @@ const defaultUserD = {
   userAddress: null
 }
 
-const userD = JSON.parse(JSON.stringify(defaultUserD));
+let userD = JSON.parse(JSON.stringify(defaultUserD));
 
 // 通用set数据函数
 const setData = (obj, defaultData) => {
