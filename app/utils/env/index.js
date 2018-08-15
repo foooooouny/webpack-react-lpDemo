@@ -8,11 +8,11 @@
     },
     {
       "label": "production_dev",
-      "value": "http://devapp.bocommlife.com/pta/service"
+      "value": "http://hostname"
     },
     {
       "label": "production_dist",
-      "value": "http://devapp.bocommlife.com/pta/service"
+      "value": "http://hostname"
     }
   ]
 }
